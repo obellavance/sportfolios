@@ -10,9 +10,39 @@
   };
   firebase.initializeApp(config);
 
-  angular.module('app', ['firebase']).controller('MyCtrl', function ($firebaseObject) {
-    var rootRef = firebase.database().ref().child('angular');
-    var ref = rootRef.child('object');
-    this.object = $firebaseObject(ref);
-  });
+  angular.module('app', ['firebase']).controller('MyCtrl', ['$scope', '$firebaseObject', function ($scope, $firebaseObject) {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        $scope.user = user;
+        console.info("User: " + user.displayName, user);
+        $scope.apply(function () {
+          $scope.user = user;
+        });
+      } else {
+        $scope.user = undefined;
+        console.info("User: " + $scope.user);
+      }
+    });
+
+    $scope.testValue = "Allo!";
+
+    firebase.auth().getRedirectResult().then(function (result) {
+      console.info("Redirect results " + result.user, result.user);
+    });
+
+    $scope.facebookLogin = function () {
+      var provider = new firebase.auth.FacebookAuthProvider();
+
+      firebase.auth().signInWithRedirect(provider).then(function (result) {
+        console.info("Logged in as user", result.user);
+      }).catch(function (error) {
+        console.error("Failed login with facebook with error " + error.message);
+      });
+    };
+
+    $scope.logout = function () {
+      firebase.auth().signOut();
+      console.info('Sign out');
+    };
+  }]);
 })();

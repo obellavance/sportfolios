@@ -10,9 +10,42 @@
   
   angular
     .module('app', ['firebase'])
-    .controller('MyCtrl', function ($firebaseObject) {
-      const rootRef = firebase.database().ref().child('angular');
-      const ref = rootRef.child('object');
-      this.object = $firebaseObject(ref);
-    });
+    .controller('MyCtrl', ['$scope', '$firebaseObject', ($scope, $firebaseObject) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          $scope.user = user;
+          console.info(`User: ${user.displayName}`, user);
+          $scope.apply(() => {
+            $scope.user = user;
+          })
+        } else {
+          $scope.user = undefined;
+          console.info(`User: ${$scope.user}`);
+        }
+      });
+
+      $scope.testValue = "Allo!";
+
+      firebase.auth().getRedirectResult()
+        .then((result) => {
+          console.info(`Redirect results ${result.user}`, result.user);
+        })
+
+      $scope.facebookLogin = () => {
+        const provider = new firebase.auth.FacebookAuthProvider();
+
+        firebase.auth().signInWithRedirect(provider)
+          .then((result) => {
+            console.info(`Logged in as user`, result.user);
+          })
+          .catch((error) => {
+            console.error(`Failed login with facebook with error ${error.message}`);
+          });
+      }
+
+      $scope.logout = () => {
+        firebase.auth().signOut();
+        console.info('Sign out');
+      }
+    }]);
 }());
