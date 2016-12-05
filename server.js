@@ -12,12 +12,20 @@ const port = process.env.PORT || conf.port;
 app.use(express.static(rootPath));
 
 // Map from the ES2015 file to the compiled ES5 file
-app.get('/app/js/:file', (req, res) => {
-  res.sendFile(path.join(__dirname + '/server/dist/js/' + req.params.file)); 
+app.get('/app/js/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/server/dist/js/' + req.params[0])); 
+});
+
+app.get('app/views/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/server/dist/views/' + req.params[0]));
 });
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
+});
+
+app.get('*', (req, res) => {
+  throw Error(`Undefined route: ${req.params[0]}`);
 });
 
 app.listen(port);

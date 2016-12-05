@@ -14,16 +14,12 @@
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         $scope.user = user;
-        console.info("User: " + user.displayName, user);
         $scope.$apply();
       } else {
         $scope.user = undefined;
-        console.info("User: " + $scope.user);
         $scope.$apply();
       }
     });
-
-    $scope.testValue = "Allo!";
 
     firebase.auth().getRedirectResult().then(function (result) {
       console.info("Redirect results " + result.user, result.user);
@@ -33,7 +29,7 @@
       var provider = new firebase.auth.FacebookAuthProvider();
 
       firebase.auth().signInWithRedirect(provider).then(function (result) {
-        console.info("Logged in as user", result.user);
+        console.info("Logged in with user " + result.user);
       }).catch(function (error) {
         console.error("Failed login with facebook with error " + error.message);
       });
@@ -41,14 +37,6 @@
 
     $scope.logout = function () {
       firebase.auth().signOut();
-      console.info('Sign out');
     };
-  }]).directive('facebookImg', function () {
-    return {
-      restrict: 'E',
-      scope: false,
-      controller: 'MyCtrl',
-      template: "<img ng-show=\"user\" ng-src=\"https://graph.facebook.com/{{user.providerData[0].uid}}/picture?height=200\" />"
-    };
-  });
+  }]);
 })();
