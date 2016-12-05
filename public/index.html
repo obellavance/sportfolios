@@ -31,13 +31,20 @@
     <script src="app/js/app.js"></script>
   </head>
   <body ng-app="app">
-    <div class="container">
-      <h1>Salut Théroux!</h1>
-      <div id="message" ng-controller="MyCtrl as ctrl">
-        <p>{{user}}</p>
-        <h3>In development!</h3>
+    <div class="container" ng-controller="MyCtrl as ctrl">
+      <div>
         <button class="btn btn-default" ng-hide="user" ng-click="facebookLogin()">Facebook Login</button>
         <button class="btn btn-default" ng-show="user" ng-click="logout()">Logout</button>
+        <p>{{user}}</p>
+        <div class="row">
+          <div class="col-md-3">
+            <h3>{{user.displayName}}</h3>
+          </div>
+          <div class="col-md-9">
+            <img ng-src="https://graph.facebook.com/{{user.providerData[0].uid}}/picture?height=200" />
+          </div>
+        </div>
+        <!--<h3>In development!</h3>-->
       </div>
     </div>
   </body>
