@@ -7,6 +7,9 @@ gulp.task('default', () => {
       presets: ['es2015']
     }))
     .pipe(gulp.dest('server/dist/js'));
+    
+  gulp.src('public/app/views/**/*.html')
+    .pipe(gulp.dest('server/dist/views'));
 });
 
 gulp.watch(['public/app/js/**/*.js'], (e) => {
