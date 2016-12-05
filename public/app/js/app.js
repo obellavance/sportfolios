@@ -15,12 +15,11 @@
         if (user) {
           $scope.user = user;
           console.info(`User: ${user.displayName}`, user);
-          $scope.apply(() => {
-            $scope.user = user;
-          })
+          $scope.$apply();
         } else {
           $scope.user = undefined;
           console.info(`User: ${$scope.user}`);
+          $scope.$apply();
         }
       });
 
