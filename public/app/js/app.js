@@ -46,5 +46,13 @@
         firebase.auth().signOut();
         console.info('Sign out');
       }
-    }]);
+    }])
+    .directive('facebookImg', () => {
+      return {
+        restrict: 'E',
+        scope: false,
+        controller: 'MyCtrl',
+        template: `<img ng-show="user" ng-src="https://graph.facebook.com/{{user.providerData[0].uid}}/picture?height=200" />`
+      }
+    });
 }());
