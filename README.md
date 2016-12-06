@@ -10,9 +10,9 @@
 
 * Fork the project
 * Clone your repository
-* npm start
-* npm run watch
-* Your app is now running well!
+* Open a terminal and run npm start
+* Open another terminal and run npm run watch
+* Your app is now running well and you're ready to code!
 
 ### Coding tips
 
