@@ -1,18 +1,19 @@
+# Sportfolios
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+### Stack
 
+* AngularJS
+* Firebase
+* Express
 
-Hi there! Welcome to Cloud9 IDE!
+### How to setup project
 
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
+* Fork the project
+* Clone your repository
+* npm start
+* npm run watch
+* Your app is now running well!
 
-Happy coding!
-The Cloud9 IDE team
+### Coding tips
+
+* You should never code in the server/dist folder. The dist folder is entirely generated from the public/app folder

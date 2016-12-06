@@ -39,6 +39,6 @@ gulp.watch(['public/app/views/**/*.html'], (e) => {
   compileHTML();
 })
 
-gulp.watch(['public/app/stylesheets/**/*.sass'], (e) => {
+gulp.watch(['public/app/stylesheets/**/*.scss'], (e) => {
   compileCSS();
 });

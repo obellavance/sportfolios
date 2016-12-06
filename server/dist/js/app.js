@@ -27,6 +27,7 @@
 
     $scope.facebookLogin = function () {
       var provider = new firebase.auth.FacebookAuthProvider();
+      // provider.addScope('user_birthday');
 
       firebase.auth().signInWithRedirect(provider).then(function (result) {
         console.info("Logged in with user " + result.user);
