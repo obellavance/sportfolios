@@ -9,24 +9,24 @@ const htmlmin = require('gulp-htmlmin');
 
 const compileJS = () => {
   pump([
-      gulp.src('public/app/js/**/*.js'),  
+      gulp.src('public/app/**/*.js'),  
       babel({ presets: ['es2015'] }),
       uglify(),
-      gulp.dest('server/dist/js')
+      gulp.dest('server/dist')
     ]);
 };
 
 const compileHTML = () => {
-  gulp.src('public/app/views/**/*.html')
+  gulp.src('public/app/**/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('server/dist/views'));
+    .pipe(gulp.dest('server/dist'));
 }
 
 const compileCSS = () => {
-  gulp.src('public/app/stylesheets/**/*.scss')
+  gulp.src('public/app/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({}))
-    .pipe(gulp.dest('server/dist/stylesheets'));
+    .pipe(gulp.dest('server/dist'));
 }
 
 const compileAll = () => {
