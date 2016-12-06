@@ -17,10 +17,9 @@ const compileJS = () => {
 };
 
 const compileHTML = () => {
-  gulp.src('public/**/*.html')
+  gulp.src('public/app/views/**/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('server/dist/views'));
-    
 }
 
 const compileCSS = () => {
