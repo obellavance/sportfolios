@@ -24,6 +24,7 @@
     
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
     
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
@@ -33,24 +34,22 @@
     
     <!-- App -->
     <script src="app/js/app.js"></script>
+    <script src="app/js/routes.js"></script>
+    
+    <!-- Controllers -->
+    <script src="app/js/controllers/my-ctrl.js"></script>
+    
+    <!-- Directives -->
     <script src="app/js/directives/facebook-image.js"></script>
+    <script src="app/js/directives/facebook-login-button.js"></script>
     
     
   </head>
   <body ng-app="app">
     <div class="container" ng-controller="MyCtrl as ctrl">
       <div>
-        <button class="btn btn-default" ng-hide="user" ng-click="facebookLogin()">Facebook Login</button>
-        <button class="btn btn-default" ng-show="user" ng-click="logout()">Logout</button>
-        <div class="row">
-          <div class="col-md-3">
-            <h3>{{user.displayName}}</h3>
-          </div>
-          <div class="col-md-9">
-            <facebook-image user-id="{{user.providerData[0].uid}}" height="200"></facebook-image>
-          </div>
-        </div>
-        <!--<h3>In development!</h3>-->
+        <facebook-login-button></facebook-login-button>
+        <ng-view></ng-view>
       </div>
     </div>
   </body>
