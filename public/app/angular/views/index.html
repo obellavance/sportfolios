@@ -40,15 +40,15 @@
     <script src="app/js/controllers/my-ctrl.js"></script>
     
     <!-- Directives -->
+    <script src="app/js/directives/custom-navbar.js"></script>
     <script src="app/js/directives/facebook-image.js"></script>
     <script src="app/js/directives/facebook-login-button.js"></script>
     
-    
   </head>
   <body ng-app="app">
+    <custom-navbar></custom-navbar>
     <div class="container" ng-controller="MyCtrl as ctrl">
       <div>
-        <facebook-login-button></facebook-login-button>
         <ng-view></ng-view>
       </div>
     </div>
