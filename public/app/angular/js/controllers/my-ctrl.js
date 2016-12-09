@@ -4,7 +4,8 @@ angular.module('app')
     $firebaseArray, 
     $firebaseObject, 
     $location, 
-    firebaseService
+    facebookService,
+    firebaseService,
   ) => {
     
     console.log(`firebaseService`, firebaseService);
@@ -32,18 +33,8 @@ angular.module('app')
       })
 
     $scope.facebookLogin = () => {
-      const provider = new firebase.auth.FacebookAuthProvider();
-      // provider.addScope('user_birthday');
-
-      console.log('added add range');
-
-      firebase.auth().signInWithRedirect(provider)
-        .then((result) => {
-          console.info(`Logged in with user ${result.user}`);
-        })
-        .catch((error) => {
-          console.error(`Failed login with facebook with error ${error.message}`);
-        });
+      facebookService.login();
+      
     }
 
     $scope.logout = () => {

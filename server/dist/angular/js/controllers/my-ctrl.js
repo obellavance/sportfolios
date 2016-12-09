@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $firebaseObject, $location, firebaseService) {
+angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $firebaseObject, $location, facebookService, firebaseService) {
 
   console.log('firebaseService', firebaseService);
   // console.log(firebaseHelper);
@@ -26,16 +26,7 @@ angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $fi
   });
 
   $scope.facebookLogin = function () {
-    var provider = new firebase.auth.FacebookAuthProvider();
-    // provider.addScope('user_birthday');
-
-    console.log('added add range');
-
-    firebase.auth().signInWithRedirect(provider).then(function (result) {
-      console.info('Logged in with user ' + result.user);
-    }).catch(function (error) {
-      console.error('Failed login with facebook with error ' + error.message);
-    });
+    facebookService.login();
   };
 
   $scope.logout = function () {

@@ -4,8 +4,9 @@
 
 // console.log('firebaseHelper', firebaseHelper);
 
-angular.module('app').controller('teamCtrl', function ($scope, $firebaseArray, $firebaseObject, $location, firebaseService) {
+angular.module('app').controller('teamCtrl', function ($scope, $firebaseArray, $firebaseObject, $location, facebookService, firebaseService) {
   firebaseService.getAll('Teams').then(function (result) {
+    console.log(facebookService.getUserById('10154774973002244'));
     $scope.teams = result;
   }).catch(function (error) {
     console.error('Error: ' + error.message);

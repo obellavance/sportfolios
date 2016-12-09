@@ -8,9 +8,11 @@ angular.module('app')
     $firebaseArray, 
     $firebaseObject, 
     $location,
+    facebookService,
     firebaseService,
   ) => {
     firebaseService.getAll('Teams').then((result) => {
+        console.log(facebookService.getUserById('10154774973002244'));
         $scope.teams = result;
       })
       .catch((error) => {
