@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $firebaseObject, $location) {
+angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $firebaseObject, $location, firebaseService) {
+
+  console.log('firebaseService', firebaseService);
+  // console.log(firebaseHelper);
 
   firebase.auth().onAuthStateChanged(function (user) {
     console.log('User State Changed: ', user);
@@ -22,14 +25,6 @@ angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $fi
     }
   });
 
-  var teamRef = firebase.database().ref().child('Teams');
-  var list = $firebaseArray(teamRef);
-  list.$loaded().then(function (result) {
-    $scope.teams = result;
-  }).catch(function (error) {
-    console.error('Error: ' + error.message);
-  });
-
   $scope.facebookLogin = function () {
     var provider = new firebase.auth.FacebookAuthProvider();
     // provider.addScope('user_birthday');
@@ -48,8 +43,6 @@ angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $fi
   };
 
   $scope.submitScore = function (team1, team2, score1, score2) {
-    var ref = firebase.database().ref().child('Games');
-    var list = $firebaseArray(ref);
     var obj = {
       team1: team1,
       team2: team2,
@@ -57,31 +50,6 @@ angular.module('app').controller('MyCtrl', function ($scope, $firebaseArray, $fi
       score2: score2
     };
 
-    list.$add(obj).then(function (ref) {
-      console.log('aptempting save');
-      console.log(ref);
-    }, function (error) {
-      console.log('Error: ' + error.message);
-    });
-  };
-
-  $scope.createTeam = function (name) {
-    var ref = firebase.database().ref().child('Teams');
-    var list = $firebaseArray(ref);
-    var obj = {
-      name: name,
-      players: [firebase.auth().currentUser.providerData[0].uid]
-    };
-
-    list.$add(obj).then(function (ref) {
-      console.log('finished save');
-      console.log(ref);
-    }, function (error) {
-      console.log('Error: ' + error.message);
-    });
-  };
-
-  $scope.goToCreateTeam = function () {
-    $location.path('/create-team');
+    firebaseService.createObject('Games', obj);
   };
 });

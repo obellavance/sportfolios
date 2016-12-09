@@ -4,6 +4,8 @@ angular.module('app').config(function ($routeProvider) {
   console.log('configurating routes...');
   $routeProvider.when('/', {
     templateUrl: '/app/views/partials/profile.html'
+  }).when('/association', {
+    templateUrl: '/app/views/partials/association.html'
   }).when('/create-team', {
     templateUrl: '/app/views/partials/create-team.html',
     controller: 'teamCtrl'
