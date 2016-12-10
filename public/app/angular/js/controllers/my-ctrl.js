@@ -7,10 +7,6 @@ angular.module('app')
     facebookService,
     firebaseService,
   ) => {
-    
-    console.log(`firebaseService`, firebaseService);
-    // console.log(firebaseHelper);
-    
     firebase.auth().onAuthStateChanged((user) => {
       console.log('User State Changed: ', user)
       console.log('actual user', firebase.auth().currentUser);
@@ -20,17 +16,9 @@ angular.module('app')
       } else {
         $scope.user = undefined;
         $scope.$apply();
+        $location.path('/');
       }
     });
-    
-    firebase.auth().getRedirectResult()
-      .then((result) => {
-        
-        console.info(`Redirect results ${result.user}`, result.user);
-        if (result.credential) {
-          console.log(`accessToken: ${result.credential.accessToken}`);
-        }
-      })
 
     $scope.facebookLogin = () => {
       facebookService.login();
@@ -38,7 +26,7 @@ angular.module('app')
     }
 
     $scope.logout = () => {
-      firebase.auth().signOut();
+      facebookService.logout();
     }
     
     $scope.submitScore = (team1, team2, score1, score2) => {
@@ -51,6 +39,4 @@ angular.module('app')
       
       firebaseService.createObject('Games', obj);
     }
-    
-    
   });
