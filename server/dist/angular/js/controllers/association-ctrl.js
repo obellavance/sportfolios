@@ -8,13 +8,13 @@ angular.module('app').controller('associationCtrl', function ($scope, $firebaseA
   $scope.createAssociation = function (name) {
     var obj = {
       name: name,
-      players: [firebase.auth().currentUser.providerData[0].uid]
+      directors: [firebase.auth().currentUser.providerData[0].uid]
     };
 
     firebaseService.createObject('Associations', obj);
   };
 
-  $scope.goToCreateTeam = function () {
+  $scope.goToCreateAssociation = function () {
     $location.path('/create-association');
   };
 });

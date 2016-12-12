@@ -13,13 +13,13 @@ angular.module('app')
     $scope.createAssociation = (name) => {
       const obj = {
         name: name,
-        players: [firebase.auth().currentUser.providerData[0].uid]
+        directors: [firebase.auth().currentUser.providerData[0].uid]
       }
       
       firebaseService.createObject('Associations', obj);
     }
     
-    $scope.goToCreateTeam = () => {
+    $scope.goToCreateAssociation = () => {
       $location.path('/create-association');
     }
   })
