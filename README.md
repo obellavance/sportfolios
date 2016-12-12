@@ -24,7 +24,8 @@
 
 * If you don't have one, create a Github Account at https://github.com
 * Access the sportfolios repository at https://github.com/AustinDidierTran/sportfolios
-* Click on the fork button on the top right to fork the repository
+* Click on the star button on the top right corner to show some love
+* Click on the fork button on the top right corner to fork the repository
 * You now have a copy of the actual project
 
 ### Giving access to your Git Repository for your Cloud 9 account
